@@ -7,14 +7,14 @@ from pathlib import Path
 import logging
 from datetime import datetime
 
-# Configure logging
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S'
 )
 
-# Configuration
+
 DOWNLOADS_DIR = str(Path.home() / "Downloads")
 DEST_DIRS = {
     "Images": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp", ".svg"],
@@ -24,7 +24,7 @@ DEST_DIRS = {
     "Archives": [".zip", ".rar", ".tar", ".gz", ".7z", ".bz2", ".xz"],
     "Code": [".py", ".java", ".js", ".html", ".css", ".cpp", ".c", ".h", ".php", ".rb", ".go", ".rs", ".sh", ".json", ".xml"],
     "Executables": [".deb", ".exe", ".msi", ".app", ".AppImage", ".run", ".bin"],
-    "Misc": []  # For any other file types
+    "Misc": []  
 }
 
 def setup_directories():
@@ -40,13 +40,13 @@ def get_destination_folder(file_extension):
     for folder, extensions in DEST_DIRS.items():
         if file_extension.lower() in extensions:
             return folder
-    return "Misc"  # Default destination if extension doesn't match any category
+    return "Misc"  
 
 def clean_downloads():
     """Move files from Downloads to their appropriate destinations"""
     setup_directories()
     
-    # Get all files in the Downloads directory
+ 
     files = [f for f in os.listdir(DOWNLOADS_DIR) if os.path.isfile(os.path.join(DOWNLOADS_DIR, f))]
     
     if not files:
@@ -56,20 +56,20 @@ def clean_downloads():
     files_moved = 0
     
     for filename in files:
-        # Skip hidden files and the script itself
+       
         if filename.startswith('.') or filename == os.path.basename(__file__):
             continue
             
         source_path = os.path.join(DOWNLOADS_DIR, filename)
         
-        # Determine file extension
+      
         file_extension = os.path.splitext(filename)[1]
         
-        # Get destination folder
+      
         dest_folder = get_destination_folder(file_extension)
         dest_path = os.path.join(DOWNLOADS_DIR, dest_folder, filename)
         
-        # Handle file name conflicts
+       
         if os.path.exists(dest_path):
             name, ext = os.path.splitext(filename)
             timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
