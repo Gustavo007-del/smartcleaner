@@ -28,7 +28,7 @@ DEST_DIRS = {
 }
 
 def setup_directories():
-    """Create destination directories if they don't exist"""
+    """Create folder if there is not"""
     for dir_name in DEST_DIRS.keys():
         dir_path = os.path.join(DOWNLOADS_DIR, dir_name)
         if not os.path.exists(dir_path):
@@ -36,7 +36,7 @@ def setup_directories():
             logging.info(f"Created directory: {dir_path}")
 
 def get_destination_folder(file_extension):
-    """Determine the appropriate destination folder based on file extension"""
+    """seting folders based on extension"""
     for folder, extensions in DEST_DIRS.items():
         if file_extension.lower() in extensions:
             return folder
