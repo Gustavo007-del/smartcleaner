@@ -43,7 +43,7 @@ def get_destination_folder(file_extension):
     return "Misc"  
 
 def clean_downloads():
-    """Move files from Downloads to their appropriate destinations"""
+    """moving files from download to folders"""
     setup_directories()
     
  
